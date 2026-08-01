@@ -10,7 +10,7 @@ import { profile } from "@/content/cv";
  *   - Project Pages:     https://<username>.github.io/<repo>
  * (второй вариант — с именем репозитория в пути, без слеша на конце).
  */
-export const siteUrl = "https://example.com";
+export const siteUrl = "https://wrkneko.github.io";
 
 export const site = {
   url: siteUrl,
