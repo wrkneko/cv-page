@@ -1,0 +1,284 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================================
+   THEME
+   Единственное место, где живут цвета, шрифты и размеры. Хардкод цвета
+   в компоненте = баг: он не переключится вместе с темой.
+
+   Палитра та же, что и в статической версии: бумага холодного серо-зелёного
+   оттенка, чернильный текст, один акцент — оксблад. Здесь она разложена по
+   именам токенов shadcn/ui, поэтому Button, Badge, Card и Table приходят
+   в этой палитре без единого переопределения цвета.
+   ========================================================================= */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Токены, которых нет в наборе shadcn, но которые есть в макете. */
+  --color-ink-2: var(--ink-2);
+  --color-rule-2: var(--rule-2);
+  --color-pass: var(--pass);
+  --color-pass-rule: var(--pass-rule);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@theme {
+  /* Точка перелома сетки-гроссбуха: до неё поля документа встают над текстом. */
+  --breakpoint-ledger: 900px;
+  --breakpoint-nav: 720px;
+  --breakpoint-id: 860px;
+}
+
+:root {
+  /* --- layout ----------------------------------------------------------- */
+  --page-max: 1080px;
+  --page-pad: 32px;
+  --rail: 150px;          /* ширина колонки-полей документа */
+  --rail-gap: 56px;
+  --header-h: 53px;
+  --radius: 3px;          /* радиусы почти нулевые: это бланк, не карточки */
+
+  /* --- light theme ------------------------------------------------------ */
+  color-scheme: light;
+
+  --background: #e9eae5;        /* paper */
+  --foreground: #17191a;        /* ink   */
+  --card: #f4f5f2;              /* sheet */
+  --card-foreground: #17191a;
+  --popover: #f4f5f2;
+  --popover-foreground: #17191a;
+  --primary: #9a2b22;           /* оксблад */
+  --primary-hover: #7a1f18;
+  --primary-foreground: #f4f5f2;
+  --secondary: #f4f5f2;
+  --secondary-foreground: #17191a;
+  --muted: #f4f5f2;
+  --muted-foreground: #5f6567;  /* ink-3 */
+  --accent: #dfe1da;            /* подложка под hover, не «акцентный цвет» */
+  --accent-foreground: #17191a;
+  --destructive: #9a2b22;
+  --border: #c6cabf;            /* rule   */
+  --input: #c6cabf;
+  --ring: #9a2b22;
+
+  --ink-2: #4a5052;             /* текст абзацев */
+  --rule-2: #d7dad1;            /* волосяная линейка внутри блока */
+  --pass: #2c6b39;              /* зарезервирован под pass-семантику */
+  --pass-rule: rgba(44, 107, 57, 0.4);
+  --selection: rgba(154, 43, 34, 0.16);
+}
+
+/* Тёмная тема — не инверсия: бумага становится графитом, оксблад светлеет
+   до терракоты, иначе он не проходит по контрасту на тёмном. */
+.dark {
+  color-scheme: dark;
+
+  --background: #131514;
+  --foreground: #e8eae4;
+  --card: #1a1d1b;
+  --card-foreground: #e8eae4;
+  --popover: #1a1d1b;
+  --popover-foreground: #e8eae4;
+  --primary: #e2705f;
+  --primary-hover: #ee8878;
+  --primary-foreground: #17191a;
+  --secondary: #1a1d1b;
+  --secondary-foreground: #e8eae4;
+  --muted: #1a1d1b;
+  --muted-foreground: #8b918c;
+  --accent: #242725;
+  --accent-foreground: #e8eae4;
+  --destructive: #e2705f;
+  --border: #2e322f;
+  --input: #2e322f;
+  --ring: #e2705f;
+
+  --ink-2: #a8aea9;
+  --rule-2: #242725;
+  --pass: #6fb07a;
+  --pass-rule: rgba(111, 176, 122, 0.4);
+  --selection: rgba(226, 112, 95, 0.2);
+}
+
+@media (max-width: 900px) {
+  :root {
+    --page-pad: 20px;
+    --rail-gap: 0px;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+    /* якорь не должен уезжать под липкую шапку */
+    scroll-padding-top: calc(var(--header-h) + 24px);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--selection);
+  }
+
+  /* Единственный видимый стиль фокуса на всю страницу. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/* ============================================================================
+   TYPOGRAPHY
+   Четыре текстовых примитива на весь сайт. Живут классами, а не россыпью
+   утилит по компонентам: размер шрифта меняется в одном месте.
+   ========================================================================= */
+
+@layer components {
+  /* Имя. Единственное место, где появляется засечный шрифт, и единственное,
+     где размер уходит выше 18px. Вся смелость макета потрачена здесь. */
+  .t-display {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(2.25rem, 6.4vw, 4.25rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    color: var(--foreground);
+  }
+
+  .t-lede {
+    font-size: 18px;
+    line-height: 1.4;
+    color: var(--foreground);
+  }
+
+  .t-body {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    max-width: 64ch;
+  }
+
+  .t-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+
+  /* Точечная выноска между ключом и значением. Не декор: ведёт глаз через
+     пустое место к значению, как в оглавлении печатной книги. */
+  .dl-leader {
+    flex: 1 1 auto;
+    align-self: flex-start;
+    margin-top: 9px; /* подогнать под ваш line-height dd */
+    height: 1px;
+    min-width: 16px;
+    background-image: radial-gradient(circle, var(--border) 0.5px, transparent 0.5px);
+    background-size: 5px 1px;
+    background-repeat: repeat-x;
+}
+}
+
+/* ============================================================================
+   PRINT
+   Рекрутеры действительно сохраняют такие страницы в PDF. Всё, что можно
+   было сказать вариантом `print:` рядом с компонентом, сказано там; здесь
+   только то, что относится к документу целиком.
+   ========================================================================= */
+
+@media print {
+  :root {
+    --page-pad: 0px;
+    --rail: 110px;
+    --rail-gap: 24px;
+    --background: #fff;
+    --foreground: #111;
+    --ink-2: #222;
+    --muted-foreground: #555;
+    --border: #ccc;
+    --rule-2: #ddd;
+    --primary: #111;
+    --card: #fff;
+  }
+
+  body {
+    font-size: 9.5pt;
+    line-height: 1.42;
+  }
+
+  .t-display {
+    font-size: 24pt;
+  }
+
+  .t-body {
+    max-width: none;
+  }
+
+  /* В бумаге ссылка бесполезна без адреса. */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 8pt;
+    color: #666;
+  }
+}
