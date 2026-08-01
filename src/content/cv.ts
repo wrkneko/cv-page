@@ -74,10 +74,7 @@ export const profile = {
     handle: "konstantin-ivanov",
     url: "https://www.linkedin.com/in/konstantin-ivanov-21128b86/",
   },
-  // TELEGRAM: подставить ник
   telegram: { handle: "@null_wrk", url: "https://t.me/null_wrk" },
-  // GITHUB: подставить профиль. Если публичных репозиториев нет —
-  // строку можно удалить из `contacts` ниже, часовой пояс там уже есть.
   github: { handle: "github.com/username", url: "https://github.com/USERNAME" },
 } as const;
 

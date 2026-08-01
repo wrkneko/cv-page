@@ -53,6 +53,9 @@ export function IdentitySection() {
           <Download className="size-[13px]" />
         </ActionButton>
         <ActionButton href={`mailto:${profile.email}`}>Email me</ActionButton>
+        <ActionButton href={profile.telegram.url} target="_blank" rel="noopener">
+          Telegram
+        </ActionButton>
         <ActionButton href={profile.linkedin.url} target="_blank" rel="noopener">
           LinkedIn
         </ActionButton>
