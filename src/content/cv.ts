@@ -89,9 +89,9 @@ export const facts: Fact[] = [
 ];
 
 export const summary: string[] = [
-  "QA Engineer with full-stack testing experience across web, mobile and backend systems — from UI/UX and API testing to performance, CI/CD pipelines and on-site hardware integrations.",
-  "Hands-on with test automation in Python, Pytest and Playwright, plus DevOps exposure across Kubernetes, Docker, Terraform and observability stacks. That combination makes debugging faster and the handover to engineering shorter — most failures get root-caused before anyone else has to look at them.",
-  "Worked across several industries in both contractor and full-time roles, mostly inside Agile teams.",
+  "Eight years testing everything from UI flows and APIs to performance benchmarks and on-site AR hardware integrations — plus QA Lead work owning strategy and reporting for stakeholders.",
+  "Automation in Python, Pytest and Playwright, paired with hands-on DevOps work across Kubernetes, Docker, Terraform and observability stacks. That combination shortens the loop between finding a bug and fixing it — most failures get root-caused before engineering has to dig in themselves.",
+  "Contractor and full-time roles across multiple industries, mostly inside Agile teams — comfortable stepping into unfamiliar codebases and systems fast.",
 ];
 
 export const roles: Role[] = [
