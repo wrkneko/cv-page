@@ -79,7 +79,7 @@ export const profile = {
 } as const;
 
 export const lede =
-  "Full-stack QA across web, mobile and backend systems — UI/UX, API and performance testing, CI/CD pipelines, and on-site hardware integrations. I test the parts other people assume are fine.";
+  "Full-stack QA ownership across web, mobile, and backend systems — test strategy, API/backend testing, CI/CD, and infrastructure level. I test the parts other people assume are fine — and build the process so nobody has to guess.";
 
 export const facts: Fact[] = [
   { key: "status", value: "open to roles", tone: "pass" },
