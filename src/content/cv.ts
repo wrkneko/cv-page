@@ -190,7 +190,7 @@ export const roles: Role[] = [
 export const stack: StackArea[] = [
   {
     area: "Automation",
-    tools: ["Python", "Pytest", "Playwright", "Locust", "SonarQube"],
+    tools: ["Python", "Pytest", "Playwright", "Locust"],
   },
   {
     area: "API & traffic",
@@ -202,6 +202,10 @@ export const stack: StackArea[] = [
     tools: ["Docker", "Kubernetes", "Terraform", "OpenTofu", "Helm", "Teamcity", "ArgoCD", "k9s"],
   },
   {
+    area: "Cloud",
+    tools: ["AWS", "GCP", "Azure"],
+  },
+  {
     area: "Data & messaging",
     tools: ["SQL", "MongoDB", "Redis", "RabbitMQ", "Kafka", "Conduktor"],
   },
@@ -210,8 +214,12 @@ export const stack: StackArea[] = [
     tools: ["Grafana", "Prometheus", "Coralogix", "Kibana", "Logstash", "Sentry"],
   },
   {
+  area: "AI-assisted QA",
+  tools: ["Claude", "Gemini", "n8n"],
+  },
+  {
     area: "Ways of working",
-    tools: ["Agile", "Scrum", "Scrum-ban", "Jira", "Linear", "Youtrack", "Confluence", "Notion"],
+    tools: ["Agile", "Scrum", "Scrum-ban", "Jira", "Linear", "Youtrack", "Figma", "Confluence", "Notion"],
   },
 ];
 
@@ -259,15 +267,10 @@ export const contacts: Entry[] = [
 
 /* -------------------------------------------------------------------------- */
 
-/** Полных лет в профессии — для приписки «8+ yrs» на полях раздела summary. */
+
 export const yearsOfExperience =
   new Date().getFullYear() - profile.since - 2;
 
-/**
- * Оглавление документа. Один массив кормит и меню в шапке, и ключи на полях,
- * и подсветку активного раздела. Приписки считаются из данных: добавили роль —
- * «5 roles» стало «6 roles» само.
- */
 export const sections: Section[] = [
   { id: "top", key: "ident", note: `rev ${profile.revision}`, inNav: false },
   {
